@@ -162,8 +162,15 @@ response = requests.post(
 
 ---
 
-### Docker run
+### Running with Docker run
 
 ```bash
 docker compose up
+```
+
+### Test
+
+## make sure app is running 
+```bash
+python test llm_test.py
 ```

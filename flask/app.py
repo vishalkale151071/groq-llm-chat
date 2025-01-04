@@ -71,12 +71,11 @@ def query_llm(client: Groq, model, user_prompt, user_name):
     chat_completion = client.chat.completions.create(
         messages=messages,
         model=model,
-        response_format={"type": "json_object"}
-
+        response_format={"type": "json_object"},
+        temperature=0.2
     )
 
     response = chat_completion.choices[0].message.content
-    print(response)
     chat_history.append({
         "role": "assistant",
         "content": response
