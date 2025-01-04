@@ -1,0 +1,22 @@
+services:
+  api:
+    image: vishalkale151071/llm-flask-api
+    container_name: flask-api
+    ports:
+      - "8000:8000"
+    environment:
+      FLASK_ENV: production  
+      GROQ_API_KEY: ${GROQ_API_KEY}  
+      LLM_MODEL: ${LLM_MODEL}  
+      SECRET_KEY: ${SECRET_KEY}  
+    restart: unless-stopped  
+  llm-chat:
+    image: vishalkale151071/llm-chat-ui
+    container_name: nextjs-ui
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - api
+    restart: unless-stopped
