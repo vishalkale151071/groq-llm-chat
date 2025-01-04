@@ -25,7 +25,7 @@ jobs:
     - name: Run tests
       working-directory: ./flask
       run: |
-        python llm-test.py
+        python llm_test.py
 
     - name: Shut down services
       working-directory: ./flask
