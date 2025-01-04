@@ -20,7 +20,7 @@ jobs:
     - name: Build and start services
       working-directory: ./flask
       run: |
-        docker-compose up -d --build
+        docker compose up -d
 
     - name: Run tests
       working-directory: ./flask
