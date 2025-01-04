@@ -39,4 +39,4 @@ jobs:
 
     - name: Shut down services
       working-directory: ./flask
-      run: docker-compose down
+      run: docker compose down
