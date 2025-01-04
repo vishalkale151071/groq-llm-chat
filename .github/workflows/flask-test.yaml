@@ -9,6 +9,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      LLM_MODEL: ${{ secrets.LLM_MODEL }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
     steps:
     - name: Checkout code
