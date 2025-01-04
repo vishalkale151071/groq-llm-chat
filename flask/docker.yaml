@@ -1,0 +1,13 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      FLASK_ENV: production  # Set the Flask environment to production
+      GROQ_API_KEY: ${GROQ_API_KEY}  # API key for your application
+      LLM_MODEL: ${LLM_MODEL}  # LLM model to use
+      SECRET_KEY: ${SECRET_KEY}  # Flask secret key
+    restart: always  # Automatically restart on failure

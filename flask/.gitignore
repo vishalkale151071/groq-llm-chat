@@ -1,0 +1,11 @@
+# envirnomnet varaible
+.env
+
+# vertual environment
+venv
+
+# pycharm editor
+.idea
+
+# pythond
+__pycache__

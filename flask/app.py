@@ -1,3 +1,4 @@
+from flask_cors import CORS
 import os
 from flask import Flask, request, jsonify, session
 from dotenv import load_dotenv
@@ -8,7 +9,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY') or 'secret_key'
-
+CORS(app)
 
 groq_api_key = os.environ.get('GROQ_API_KEY')
 llm_model = os.environ.get('LLM_MODEL') or "llama-3.1-8b-instant"
@@ -26,7 +27,7 @@ def home():
 
 @app.route("/generate-query", methods=["POST"])
 def generate_query():
-    data = request.get_json()
+    data = request.form
     user_prompt = data.get("query", "")
     user_name = data.get("name", "")
     if not user_name:
@@ -55,9 +56,10 @@ def query_llm(client: Groq, model, user_prompt, user_name):
         "role": "user",
         "content": user_prompt
     }
+
     chat_history = session[user_name]
-    if len(chat_history) > 7:
-        chat_history.pop(1)
+
+
 
     chat_history.append(prompt)
 
@@ -79,6 +81,11 @@ def query_llm(client: Groq, model, user_prompt, user_name):
         "role": "assistant",
         "content": response
     })
+
+    # Delete last two conversation
+    if len(chat_history) > 6:
+        chat_history.pop(0)
+        chat_history.pop(0)
 
     session[user_name] = chat_history
     session.modified = True

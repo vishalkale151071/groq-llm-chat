@@ -1,5 +1,0 @@
-groq
-langchain-core
-langchain-groq
-flask
-python-dotenv
