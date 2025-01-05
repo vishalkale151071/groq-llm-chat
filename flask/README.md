@@ -29,7 +29,7 @@ Returns a simple welcome message.
 #### Response:
 - **200 OK**:
   ```json
-  "Welcome"
+  "llm chat v1.0"
   ```
 
 ---
@@ -51,13 +51,19 @@ Generates a response from the language model based on the user's query and maint
 - **200 OK**:
   Returns the AI-generated response as a JSON string.
 
-  Example:
-  ```json
-  "What was Apple's profit last year?"
-  ```
-
 - **400 Bad Request**:
   If `name` or `query` is missing in the request body.
+  
+  Example:
+    ```python
+    base_url = "http://127.0.0.1:8000"
+    
+    response = requests.post(
+        base_url + '/generate-query',
+        data={
+         "query": "Amazon's sale 2020"
+        })
+    ```
 
   Example:
   ```json
@@ -102,10 +108,10 @@ Handles communication with the Groq API to generate AI responses. Maintains sess
    LLM_MODEL=llama-3.1-8b-instant
    ```
 
-### Run the Application
-```bash
-python app.py
-```
+    ### Run the Application
+    ```bash
+    python app.py
+    ```
 
 The app will run at `http://0.0.0.0:8000`.
 
@@ -171,6 +177,6 @@ docker compose up
 ### Test
 
 ## make sure app is running 
-```bash
-python test llm_test.py
+```python
+python llm_test.py
 ```

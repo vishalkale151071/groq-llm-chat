@@ -9,7 +9,7 @@ class LLMTest(unittest.TestCase):
         response = requests.get(self.base_url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.text, "Welcome")
+        self.assertEqual(response.text, "llm chat v1.0")
 
     def test_llm_no_user_name(self):
         response = requests.post(self.base_url + '/generate-query')

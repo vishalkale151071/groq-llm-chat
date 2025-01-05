@@ -5,10 +5,15 @@ from dotenv import load_dotenv
 from groq import Groq
 from prompts import system_prompt
 
+# Load environment variable into Flask app
 load_dotenv()
 
 app = Flask(__name__)
+
+# Add secret_key for sessions
 app.secret_key = os.environ.get('SECRET_KEY') or 'secret_key'
+
+# Added wild card CORS for development purpose
 CORS(app)
 
 groq_api_key = os.environ.get('GROQ_API_KEY')
@@ -22,7 +27,7 @@ groq_client = Groq(api_key=groq_api_key)
 
 @app.route("/")
 def home():
-    return "Welcome"
+    return "llm chat v1.0"
 
 
 @app.route("/generate-query", methods=["POST"])
@@ -58,8 +63,6 @@ def query_llm(client: Groq, model, user_prompt, user_name):
     }
 
     chat_history = session[user_name]
-
-
 
     chat_history.append(prompt)
 
